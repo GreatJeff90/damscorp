@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
-        // 1. BLOCKING THEME SCRIPT (Runs immediately to prevent "flash")
         (function() {
             const savedTheme = localStorage.getItem('theme');
             const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -19,7 +18,6 @@
             }
         })();
 
-        // 2. TAILWIND CONFIG
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -60,7 +58,7 @@
     <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-4xl">
         <div class="glass rounded-2xl px-6 py-3 flex justify-between items-center shadow-2xl">
             <a href="index.html" class="flex items-center">
-                <img src="logo.png" alt="Damscorp" class="h-16 md:h-20 w-auto object-contain">
+                <img src="logo.png" alt="Damscorp" class="h-20 md:h-24 w-auto object-contain drop-shadow-md">
             </a>
 
             <div class="flex items-center gap-4 md:gap-8">
@@ -95,7 +93,7 @@
                 Home improvement and property management built on quality finishing, safety, and clear communication.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-5">
-                <a href="#contact" class="bg-brandBlue text-white px-10 py-5 rounded-2xl font-bold text-sm hover:scale-105 transition-all shadow-xl shadow-brandBlue/20 text-center">Get a Quote</a>
+                <a href="contact.html" class="bg-brandBlue text-white px-10 py-5 rounded-2xl font-bold text-sm hover:scale-105 transition-all shadow-xl shadow-brandBlue/20 text-center">Get a Quote</a>
                 <a href="services.html" class="glass text-slate-800 dark:text-white px-10 py-5 rounded-2xl font-bold text-sm hover:bg-black/5 dark:hover:bg-white/5 transition-all text-center">Explore Services</a>
             </div>
         </div>
@@ -165,15 +163,20 @@
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4 tracking-tighter">Ready to start?</h2>
             <p class="text-slate-500 mb-10 text-sm">Connect with Damscorp for a professional inspection.</p>
-            <a href="mailto:contact@damscorp.ng" class="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white hover:text-brandBlue dark:hover:text-brandGreen transition-colors underline underline-offset-8 decoration-1">
-                contact@damscorp.ng
+            
+            <a href="mailto:contact@damscorp.com" class="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white hover:text-brandBlue dark:hover:text-brandGreen transition-colors underline underline-offset-8 decoration-1">
+                contact@damscorp.com
             </a>
             
             <div class="mt-24 pt-8 border-t border-black/5 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                 <span class="text-[10px] uppercase tracking-[0.4em] font-black text-slate-500">© 2026 Damscorp Nigeria</span>
-                <div class="flex gap-8">
+                
+                <div class="flex flex-wrap justify-center gap-6 md:gap-8">
                     <a href="#" class="text-[10px] uppercase tracking-widest text-slate-400 hover:text-brandBlue transition">Instagram</a>
                     <a href="#" class="text-[10px] uppercase tracking-widest text-slate-400 hover:text-brandBlue transition">LinkedIn</a>
+                    <a href="#" class="text-[10px] uppercase tracking-widest text-slate-400 hover:text-brandBlue transition">TikTok</a>
+                    <a href="#" class="text-[10px] uppercase tracking-widest text-slate-400 hover:text-brandBlue transition">X (Twitter)</a>
+                    <a href="#" class="text-[10px] uppercase tracking-widest text-slate-400 hover:text-brandBlue transition">Facebook</a>
                 </div>
             </div>
         </div>
@@ -196,7 +199,6 @@
             updateIcon();
         }
 
-        // Initialize icon on page load
         updateIcon();
     </script>
 </body>
