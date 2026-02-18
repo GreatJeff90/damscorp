@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
+        // 1. BLOCKING THEME SCRIPT (Runs immediately to prevent "flash")
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+
+        // 2. TAILWIND CONFIG
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -22,24 +34,24 @@
         }
     </script>
 
-    <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { 
-            @apply bg-white text-slate-900 dark:bg-[#050505] dark:text-slate-300 transition-colors duration-300; 
+    <style type="text/tailwindcss">
+        @layer base {
+            * { font-family: 'Plus Jakarta Sans', sans-serif; }
+            body { 
+                @apply bg-white text-slate-900 dark:bg-[#050505] dark:text-slate-300 transition-colors duration-300; 
+            }
         }
-        .glass { 
-            @apply bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-black/5 dark:border-white/10; 
+
+        @layer components {
+            .glass { 
+                @apply bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-black/5 dark:border-white/10; 
+            }
+            .text-gradient {
+                @apply bg-clip-text text-transparent bg-gradient-to-br from-slate-900 via-slate-800 to-slate-500 
+                       dark:from-white dark:via-slate-200 dark:to-slate-500;
+            }
         }
-        .text-gradient {
-            background: linear-gradient(to bottom right, #1e293b 30%, #64748b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .dark .text-gradient {
-            background: linear-gradient(to bottom right, #ffffff 30%, #64748b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+
         section { position: relative; z-index: 10; }
     </style>
 </head>
@@ -57,7 +69,7 @@
                     <a href="services.html" class="text-slate-500 dark:text-slate-400 hover:text-brandBlue dark:hover:text-white transition-colors">Services</a>
                 </div>
 
-                <button onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-white transition-all hover:scale-105">
+                <button onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-white transition-all hover:scale-110 active:scale-90">
                     <svg id="theme-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
                 </button>
                 
@@ -168,26 +180,23 @@
     </footer>
 
     <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            html.classList.toggle('dark');
-            const isDark = html.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            updateIcon();
-        }
+        const sunIcon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />';
+        const moonIcon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
 
         function updateIcon() {
             const icon = document.getElementById('theme-icon');
             const isDark = document.documentElement.classList.contains('dark');
-            icon.innerHTML = isDark 
-                ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />' 
-                : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
+            icon.innerHTML = isDark ? sunIcon : moonIcon;
         }
 
-        // Apply theme from local storage
-        if (localStorage.theme === 'light') {
-            document.documentElement.classList.remove('dark');
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateIcon();
         }
+
+        // Initialize icon on page load
         updateIcon();
     </script>
 </body>

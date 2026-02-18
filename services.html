@@ -1,44 +1,91 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services | Damscorp Premium Property Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
     <script>
+        // 1. BLOCKING THEME SCRIPT
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+
+        // 2. TAILWIND CONFIG
         tailwind.config = {
             darkMode: 'class',
-            theme: { extend: { colors: { brandBlue: '#0A3D62', brandGreen: '#76BA1B', brandOrange: '#F37021' } } }
+            theme: { 
+                extend: { 
+                    colors: { 
+                        brandBlue: '#0A3D62', 
+                        brandGreen: '#76BA1B', 
+                        brandOrange: '#F37021' 
+                    } 
+                } 
+            }
         }
     </script>
-    <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { @apply bg-white text-slate-900 dark:bg-[#050505] dark:text-slate-300 transition-colors duration-300; }
-        .glass { @apply bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-black/5 dark:border-white/10; }
+
+    <style type="text/tailwindcss">
+        @layer base {
+            * { font-family: 'Plus Jakarta Sans', sans-serif; }
+            body { 
+                @apply bg-white text-slate-900 dark:bg-[#050505] dark:text-slate-300 transition-colors duration-300; 
+            }
+        }
+        @layer components {
+            .glass { @apply bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-black/5 dark:border-white/10; }
+            .text-gradient {
+                @apply bg-clip-text text-transparent bg-gradient-to-br from-slate-900 via-slate-700 to-slate-500 
+                       dark:from-white dark:via-slate-200 dark:to-slate-500;
+            }
+        }
     </style>
 </head>
-<body>
-    <nav class="p-8 flex justify-between items-center max-w-6xl mx-auto">
-        <a href="index.html" class="flex items-center">
-            <img src="logo.png" alt="Damscorp" class="h-16 md:h-20 w-auto object-contain">
-        </a>
-        <div class="flex gap-4">
-            <button onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-white transition-all">
-                <svg id="theme-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
-            </button>
-            <a href="index.html" class="glass px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest text-slate-800 dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition">← Back Home</a>
+<body class="selection:bg-brandBlue/30">
+
+    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-4xl">
+        <div class="glass rounded-2xl px-6 py-3 flex justify-between items-center shadow-2xl">
+            <a href="index.html" class="flex items-center">
+                <img src="logo.png" alt="Damscorp" class="h-12 md:h-16 w-auto object-contain">
+            </a>
+
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex gap-8 text-[10px] uppercase tracking-[0.2em] font-bold mr-4">
+                    <a href="index.html" class="text-slate-500 dark:text-slate-400 hover:text-brandBlue dark:hover:text-white transition-colors">Home</a>
+                    <a href="about.html" class="text-slate-500 dark:text-slate-400 hover:text-brandBlue dark:hover:text-white transition-colors">About</a>
+                </div>
+
+                <button onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-white transition-all hover:scale-110 active:scale-90">
+                    <svg id="theme-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
+                </button>
+                
+                <a href="index.html" class="bg-brandBlue text-white px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition active:scale-95">Back Home</a>
+            </div>
         </div>
     </nav>
 
-    <main class="container mx-auto px-6 py-12">
-        <h1 class="text-5xl font-extrabold text-slate-900 dark:text-white mb-16 tracking-tighter text-center">Our Expertise</h1>
+    <main class="container mx-auto px-6 pt-48 pb-20">
+        <div class="text-center mb-16">
+            <div class="inline-block glass px-4 py-1.5 rounded-full border-brandGreen/20 mb-6">
+                <span class="text-brandGreen text-[10px] uppercase tracking-[0.3em] font-black">Our Expertise</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-gradient tracking-tighter">Professional Solutions</h1>
+        </div>
 
         <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <div class="glass p-12 rounded-[48px] hover:border-brandGreen transition-all duration-500">
-                <span class="text-brandGreen font-black text-4xl opacity-20 block mb-4">01</span>
+            <div class="glass p-12 rounded-[48px] border-transparent hover:border-brandGreen/30 transition-all duration-500 group">
+                <span class="text-brandGreen font-black text-4xl opacity-10 group-hover:opacity-30 block mb-4 transition-opacity">01</span>
                 <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Renovation & Remodeling</h2>
-                <ul class="space-y-3 text-slate-500 dark:text-slate-400">
+                <ul class="space-y-4 text-slate-500 dark:text-slate-400">
                     <li class="flex items-center gap-3"> <span class="w-1.5 h-1.5 bg-brandGreen rounded-full"></span> POP Ceiling Design</li>
                     <li class="flex items-center gap-3"> <span class="w-1.5 h-1.5 bg-brandGreen rounded-full"></span> Basement Finishing</li>
                     <li class="flex items-center gap-3"> <span class="w-1.5 h-1.5 bg-brandGreen rounded-full"></span> Painting & Drywall Installation</li>
@@ -46,42 +93,62 @@
                 </ul>
             </div>
 
-            <div class="glass p-12 rounded-[48px] hover:border-brandBlue transition-all duration-500">
-                <span class="text-brandBlue font-black text-4xl opacity-20 block mb-4">02</span>
+            <div class="glass p-12 rounded-[48px] border-transparent hover:border-brandBlue/30 transition-all duration-500 group">
+                <span class="text-brandBlue font-black text-4xl opacity-10 group-hover:opacity-30 block mb-4 transition-opacity">02</span>
                 <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Property Maintenance</h2>
-                <ul class="space-y-3 text-slate-500 dark:text-slate-400">
+                <ul class="space-y-4 text-slate-500 dark:text-slate-400">
                     <li class="flex items-center gap-3"> <span class="w-1.5 h-1.5 bg-brandBlue rounded-full"></span> Full Property Management</li>
                     <li class="flex items-center gap-3"> <span class="w-1.5 h-1.5 bg-brandBlue rounded-full"></span> Plumbing & Electrical Services</li>
                     <li class="flex items-center gap-3"> <span class="w-1.5 h-1.5 bg-brandBlue rounded-full"></span> Dependable Ongoing Support</li>
                 </ul>
             </div>
 
-            <div class="glass p-12 rounded-[48px] md:col-span-2 hover:border-brandOrange transition-all duration-500">
-                <span class="text-brandOrange font-black text-4xl opacity-20 block mb-4">03</span>
-                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">Specialized Cleaning</h2>
+            <div class="glass p-12 rounded-[48px] md:col-span-2 border-transparent hover:border-brandOrange/30 transition-all duration-500 group">
+                <span class="text-brandOrange font-black text-4xl opacity-10 group-hover:opacity-30 block mb-4 transition-opacity">03</span>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Specialized Cleaning</h2>
                 <div class="grid md:grid-cols-2 gap-8">
-                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed">We provide industrial and commercial cleaning services designed for corporate environments and high-traffic spaces.</p>
-                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed">Our post-construction cleaning ensures that your newly renovated space is spotless and ready for immediate handover.</p>
+                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed">We provide industrial and commercial cleaning services designed for corporate environments and high-traffic spaces, ensuring a pristine professional atmosphere.</p>
+                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed">Our post-construction cleaning is thorough and efficient, removing all dust and debris to ensure your newly renovated space is ready for immediate handover.</p>
                 </div>
             </div>
         </div>
     </main>
 
+    <footer class="py-20 border-t border-black/5 dark:border-white/5">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4 tracking-tighter">Need a professional inspection?</h2>
+            <p class="text-slate-500 mb-10 text-sm">Let's discuss how we can improve your property value.</p>
+            <a href="mailto:contact@damscorp.ng" class="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white hover:text-brandBlue dark:hover:text-brandGreen transition-colors underline underline-offset-8 decoration-1">
+                contact@damscorp.ng
+            </a>
+            
+            <div class="mt-24 pt-8 border-t border-black/5 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-[10px] uppercase tracking-[0.4em] font-black text-slate-500">© 2026 Damscorp Nigeria</span>
+                <div class="flex gap-8">
+                    <a href="#" class="text-[10px] uppercase tracking-widest text-slate-400 hover:text-brandBlue transition">Instagram</a>
+                    <a href="#" class="text-[10px] uppercase tracking-widest text-slate-400 hover:text-brandBlue transition">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            html.classList.toggle('dark');
-            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-            updateIcon();
-        }
+        const sunIcon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />';
+        const moonIcon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
+
         function updateIcon() {
             const icon = document.getElementById('theme-icon');
             const isDark = document.documentElement.classList.contains('dark');
-            icon.innerHTML = isDark 
-                ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />' 
-                : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
+            icon.innerHTML = isDark ? sunIcon : moonIcon;
         }
-        if (localStorage.theme === 'light') document.documentElement.classList.remove('dark');
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateIcon();
+        }
+
         updateIcon();
     </script>
 </body>
