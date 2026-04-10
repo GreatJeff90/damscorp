@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Damscorp | Property Management & Home Improvement</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <script>
@@ -25,98 +25,125 @@
     <style type="text/tailwindcss">
         @layer base {
             * { font-family: 'Plus Jakarta Sans', sans-serif; }
-            body { 
-                @apply bg-white text-slate-900 transition-colors duration-300; 
-            }
+            body { @apply bg-slate-50 text-slate-900 antialiased; }
         }
         @layer components {
-            .glass { @apply bg-white/80 backdrop-blur-xl border border-black/5 shadow-sm; }
+            .glass { 
+                @apply bg-white/70 backdrop-blur-md border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]; 
+            }
             .text-gradient {
-                @apply bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-700 to-slate-500;
+                @apply bg-clip-text text-transparent bg-gradient-to-br from-brandBlue via-slate-800 to-slate-600;
+            }
+            .nav-link {
+                @apply text-[11px] uppercase tracking-[0.2em] font-bold text-slate-500 hover:text-brandBlue transition-all duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-brandGreen hover:after:w-full after:transition-all;
             }
         }
     </style>
 </head>
-<body class="selection:bg-brandBlue/30">
+<body class="selection:bg-brandBlue selection:text-white">
 
-    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-5xl">
-        <div class="glass rounded-2xl px-4 md:px-8 py-3 flex justify-between items-center shadow-2xl">
-            <a href="index.html" class="flex items-center">
-                <img src="logo.png" alt="Damscorp" class="h-16 md:h-20 w-auto object-contain">
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-6xl">
+        <div class="glass rounded-3xl px-6 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center group">
+                <img src="logo.png" alt="Damscorp" class="h-12 md:h-16 w-auto object-contain transition-transform group-hover:scale-105">
             </a>
 
-            <div class="flex items-center gap-4 md:gap-8">
-                <div class="hidden md:flex gap-8 text-[10px] uppercase tracking-[0.2em] font-bold items-center">
-                    <a href="index.html" class="text-slate-500 hover:text-brandBlue transition-colors">Home</a>
-                    <a href="services.html" class="text-slate-500 hover:text-brandBlue transition-colors">Services</a>
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="about.html" class="nav-link text-brandBlue after:w-full after:bg-brandBlue">About</a>
                 </div>
                 
-                <a href="contact.html" class="bg-brandBlue text-white px-5 md:px-7 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition active:scale-95 shadow-lg shadow-brandBlue/20">
+                <a href="contact.html" class="bg-brandBlue text-white px-6 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-brandBlue/90 hover:shadow-xl hover:shadow-brandBlue/20 transition-all active:scale-95">
                     Get a Quote
                 </a>
             </div>
         </div>
     </nav>
 
-    <main class="container mx-auto px-6 pt-48 pb-20 max-w-4xl">
-        <div class="inline-block glass px-4 py-1.5 rounded-full border-brandGreen/20 mb-8">
-            <span class="text-brandGreen text-[10px] uppercase tracking-[0.3em] font-black">Our Story</span>
+    <main class="container mx-auto px-6 pt-44 pb-24 max-w-5xl">
+        <div class="flex justify-start mb-6">
+            <div class="glass px-4 py-2 rounded-full border-brandGreen/30 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brandGreen animate-pulse"></span>
+                <span class="text-brandGreen text-[10px] uppercase tracking-[0.3em] font-black">Our Story</span>
+            </div>
         </div>
-        <h1 class="text-5xl md:text-7xl font-extrabold text-gradient mb-12 tracking-tighter">Who We Are</h1>
+
+        <h1 class="text-6xl md:text-8xl font-extrabold text-gradient mb-16 tracking-tighter leading-tight">
+            Who We <br class="hidden md:block"> Are.
+        </h1>
         
-        <div class="space-y-12 text-lg leading-relaxed">
-            <section class="glass p-10 rounded-[40px] border-brandBlue/10 bg-slate-50/50">
-                <h2 class="text-brandBlue text-2xl font-bold mb-4">Our Foundation</h2>
-                <p>Damscorp is a home improvement and property management company in Nigeria. We help homeowners, landlords, and businesses improve their spaces through renovation, remodelling, and high-end technical support.</p>
-            </section>
-
-            <section class="px-8 border-l-4 border-brandGreen">
-                <h2 class="text-brandBlue text-2xl font-bold mb-4">The Damscorp Standard</h2>
-                <p>Our work is built on <strong class="text-brandOrange">quality finishing, safety, and clear communication</strong>. Whether you need a one-time upgrade or full property management, we deliver reliable service from inspection to handover.</p>
-            </section>
-
-            <div class="grid md:grid-cols-2 gap-8 pt-10">
-                <div class="glass p-8 rounded-3xl">
-                    <div class="w-10 h-10 bg-brandBlue/10 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-5 h-5 text-brandBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+        <div class="grid grid-cols-1 gap-16">
+            <section class="relative group">
+                <div class="absolute -inset-4 bg-gradient-to-r from-brandBlue/5 to-transparent rounded-[48px] -z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="md:w-1/3">
+                        <h2 class="text-brandBlue text-xs uppercase tracking-[0.3em] font-bold mb-4 flex items-center gap-2">
+                            <span class="w-8 h-px bg-brandBlue/20"></span> Foundation
+                        </h2>
                     </div>
-                    <h3 class="text-brandBlue font-bold uppercase tracking-widest text-xs mb-2">Our Vision</h3>
-                    <p class="text-sm">To become the gold standard for property integrity and aesthetic excellence across Nigeria.</p>
+                    <div class="md:w-2/3">
+                        <p class="text-xl md:text-2xl text-slate-700 leading-relaxed font-medium">
+                            Damscorp is a premier home improvement and property management firm based in Nigeria. We bridge the gap between <span class="text-brandBlue">technical precision</span> and <span class="text-brandBlue">aesthetic luxury</span>.
+                        </p>
+                    </div>
                 </div>
-                <div class="glass p-8 rounded-3xl">
-                    <div class="w-10 h-10 bg-brandOrange/10 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-5 h-5 text-brandOrange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            </section>
+
+            <section class="glass p-8 md:p-12 rounded-[40px] border-none shadow-xl ring-1 ring-black/5">
+                <h2 class="text-brandBlue text-2xl font-bold mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-shield-halved text-brandGreen"></i>
+                    The Damscorp Standard
+                </h2>
+                <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
+                    Our work is anchored in <strong class="text-slate-900 font-extrabold underline decoration-brandOrange decoration-2 underline-offset-4">quality finishing, safety, and transparency</strong>. From the initial site inspection to the final handover, we ensure every detail aligns with international standards.
+                </p>
+            </section>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="group glass p-10 rounded-[32px] hover:bg-brandBlue transition-all duration-500">
+                    <div class="w-14 h-14 bg-brandBlue/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+                        <i class="fa-solid fa-eye text-brandBlue group-hover:text-white text-xl"></i>
                     </div>
-                    <h3 class="text-brandOrange font-bold uppercase tracking-widest text-xs mb-2">Our Mission</h3>
-                    <p class="text-sm">Delivering reliable, transparent, and high-quality maintenance services that turn houses into homes.</p>
+                    <h3 class="text-brandBlue group-hover:text-white font-bold uppercase tracking-widest text-xs mb-4">Our Vision</h3>
+                    <p class="text-slate-600 group-hover:text-white/80 leading-relaxed">To become the gold standard for property integrity and aesthetic excellence across the West African landscape.</p>
+                </div>
+
+                <div class="group glass p-10 rounded-[32px] hover:bg-brandOrange transition-all duration-500">
+                    <div class="w-14 h-14 bg-brandOrange/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+                        <i class="fa-solid fa-bolt text-brandOrange group-hover:text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-brandOrange group-hover:text-white font-bold uppercase tracking-widest text-xs mb-4">Our Mission</h3>
+                    <p class="text-slate-600 group-hover:text-white/80 leading-relaxed">Delivering reliable, transparent, and high-quality maintenance services that turn basic structures into modern homes.</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer id="contact" class="py-20 border-t border-black/5 bg-slate-50/30">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold text-slate-900 mb-4 tracking-tighter">Ready to start?</h2>
-            <p class="text-slate-500 mb-10 text-sm">Connect with Damscorp for a professional inspection.</p>
-            
-            <div class="flex flex-col gap-4">
-                <a href="mailto:contact@damscorp.ng" class="text-2xl md:text-4xl font-extrabold text-slate-900 hover:text-brandBlue transition-colors underline underline-offset-8 decoration-1">
-                    contact@damscorp.com
-                </a>
-                <a href="tel:+2349035263540" class="text-xl md:text-2xl font-bold text-brandBlue hover:text-brandGreen transition-colors">
-                    +234 903 526 3540
-                </a>
-            </div>
-            
-            <div class="mt-24 pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                <span class="text-[10px] uppercase tracking-[0.4em] font-black text-slate-400">© 2026 Damscorp Nigeria</span>
+    <footer id="contact" class="pt-32 pb-12 bg-slate-900 text-white rounded-t-[50px]">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl md:text-6xl font-extrabold mb-8 tracking-tighter">Ready to start?</h2>
+                <p class="text-slate-400 mb-12 text-lg">Connect with us today for a professional inspection.</p>
                 
-                <div class="flex gap-8 text-xl text-slate-400">
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-facebook"></i></a>
+                <div class="space-y-6">
+                    <a href="mailto:contact@damscorp.ng" class="block text-2xl md:text-5xl font-bold hover:text-brandGreen transition-all break-all italic">
+                        contact@damscorp.ng
+                    </a>
+                    <a href="tel:+2349035263540" class="block text-xl md:text-2xl font-medium text-slate-400 hover:text-white transition-colors">
+                        +234 903 526 3540
+                    </a>
+                </div>
+
+                <div class="mt-32 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
+                    <p class="text-[10px] uppercase tracking-[0.4em] font-bold text-slate-500">© 2026 Damscorp Nigeria • Property Integrity</p>
+                    
+                    <div class="flex gap-6">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all transform hover:-translate-y-1"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all transform hover:-translate-y-1"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all transform hover:-translate-y-1"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

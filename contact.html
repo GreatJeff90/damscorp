@@ -148,21 +148,75 @@
         </div>
     </main>
 
-    <footer class="py-20 border-t border-black/5 bg-slate-50/30">
-        <div class="container mx-auto px-6 text-center">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <span class="text-[10px] uppercase tracking-[0.4em] font-black text-slate-400">© 2026 Damscorp Nigeria</span>
-                
-                <div class="flex gap-8 text-xl text-slate-400">
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-facebook"></i></a>
+    <footer class="bg-brandBlue text-white pt-20 pb-10 px-6">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-2">
+                    <img src="logo.png" alt="Damscorp" class="h-12 w-auto mb-6 brightness-0 invert">
+                    <p class="text-slate-400 max-w-sm mb-8">Nigeria's most dependable property experts. We transform houses into homes and investments into assets.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-brandGreen transition-all"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-brandGreen transition-all"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-brandGreen transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
                 </div>
+                <div>
+                    <h4 class="font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Our Services</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Get a Quote</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6">Contact</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><i class="fa-solid fa-phone mr-2 text-brandGreen"></i> +234 903 526 3540</li>
+                        <li><i class="fa-solid fa-envelope mr-2 text-brandGreen"></i> contact@damscorp.com</li>
+                        <li><i class="fa-solid fa-location-dot mr-2 text-brandGreen"></i> Lagos, Nigeria</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-slate-500 font-bold">
+                <p>© 2026 Damscorp Nigeria. All rights reserved.</p>
+                <p>Designed for Excellence</p>
             </div>
         </div>
     </footer>
 
+    <script>
+        // Typewriter Logic
+        const typewriterElement = document.getElementById('typewriter');
+        const phrases = ["Modern Renovation", "Home Improvement", "Property Management", "Quality Finishing"];
+        let phraseIndex = 0, charIndex = 0, isDeleting = false, typeSpeed = 100;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            typewriterElement.textContent = isDeleting 
+                ? currentPhrase.substring(0, charIndex--) 
+                : currentPhrase.substring(0, charIndex++);
+
+            if (!isDeleting && charIndex > currentPhrase.length) {
+                isDeleting = true;
+                typeSpeed = 2000;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500;
+            } else {
+                typeSpeed = isDeleting ? 50 : 100;
+            }
+            setTimeout(type, typeSpeed);
+        }
+
+        // Mobile Menu Logic
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('translate-x-full');
+        }
+
+        document.addEventListener('DOMContentLoaded', type);
+    </script>
 </body>
 </html>
