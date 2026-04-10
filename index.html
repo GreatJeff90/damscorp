@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Damscorp | Premium Home Improvement & Property Management</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -16,6 +18,15 @@
                         brandBlue: '#0A3D62',
                         brandGreen: '#76BA1B',
                         brandOrange: '#F37021',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
                     }
                 }
             }
@@ -25,201 +36,293 @@
     <style type="text/tailwindcss">
         @layer base {
             * { font-family: 'Plus Jakarta Sans', sans-serif; }
-            body { 
-                @apply bg-white text-slate-900 transition-colors duration-300; 
-            }
+            body { @apply bg-white text-slate-900 overflow-x-hidden; }
         }
-
         @layer components {
-            .glass { 
-                @apply bg-white/80 backdrop-blur-xl border border-black/5 shadow-sm; 
-            }
-            .text-gradient {
-                @apply bg-clip-text text-transparent bg-gradient-to-br from-slate-900 via-slate-800 to-slate-500;
-            }
-            .cursor {
-                @apply font-light text-brandOrange ml-1;
-                animation: blink 1s infinite;
-            }
-            @keyframes blink {
-                0%, 100% { opacity: 1; }
-                50% { opacity: 0; }
-            }
+            .glass { @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl; }
+            .nav-link { @apply text-[11px] uppercase tracking-[0.2em] font-bold text-slate-500 hover:text-brandBlue transition-all relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brandOrange after:transition-all hover:after:w-full; }
         }
-
-        section { position: relative; z-index: 10; }
+        .cursor { @apply font-light text-brandOrange ml-1 animate-[blink_1s_infinite]; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     </style>
 </head>
 <body class="selection:bg-brandBlue/30">
 
-    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-5xl">
-        <div class="glass rounded-2xl px-4 md:px-8 py-3 flex justify-between items-center shadow-2xl">
+    <div id="mobile-menu" class="fixed inset-0 z-[150] bg-brandBlue translate-x-full transition-transform duration-500 flex flex-col items-center justify-center gap-8 text-white">
+        <button onclick="toggleMenu()" class="absolute top-10 right-10 text-3xl">&times;</button>
+        <a href="about.html" onclick="toggleMenu()" class="text-2xl font-bold">About</a>
+        <a href="services.html" onclick="toggleMenu()" class="text-2xl font-bold">Services</a>
+        <a href="#testimonials" onclick="toggleMenu()" class="text-2xl font-bold">Reviews</a>
+        <a href="contact.html" class="bg-brandOrange px-8 py-3 rounded-xl font-bold">Get a Quote</a>
+    </div>
+
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-6xl">
+        <div class="glass rounded-2xl px-6 py-3 flex justify-between items-center">
             <a href="index.html" class="flex items-center">
-                <img src="logo.png" alt="Damscorp" class="h-16 md:h-20 w-auto object-contain">
+                <img src="logo.png" alt="Damscorp Logo" class="h-10 md:h-20 w-auto object-contain">
             </a>
 
-            <div class="flex items-center gap-4 md:gap-8">
-                <div class="hidden md:flex gap-8 text-[10px] uppercase tracking-[0.2em] font-bold items-center">
-                    <a href="about.html" class="text-slate-500 hover:text-brandBlue transition-colors">About</a>
-                    <a href="services.html" class="text-slate-500 hover:text-brandBlue transition-colors">Services</a>
-                </div>
-                
-                <a href="contact.html" class="bg-brandBlue text-white px-5 md:px-7 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition active:scale-95 shadow-lg shadow-brandBlue/20">
+            <div class="hidden md:flex items-center gap-10">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="contact.html" class="bg-brandBlue text-white px-6 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-brandOrange transition-all shadow-lg shadow-brandBlue/20">
                     Get a Quote
                 </a>
             </div>
+
+            <button onclick="toggleMenu()" class="md:hidden text-brandBlue text-2xl">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
         </div>
     </nav>
 
-    <section class="relative min-h-screen flex items-center justify-center pt-40 px-6 overflow-hidden bg-slate-50/50">
-        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-brandBlue/5 blur-[120px] rounded-full"></div>
-        <div class="absolute bottom-[10%] right-[-5%] w-[400px] h-[400px] bg-brandGreen/5 blur-[100px] rounded-full"></div>
-
-        <div class="container mx-auto text-center relative">
-            <div class="inline-block glass px-4 py-1.5 rounded-full border-brandGreen/20 mb-8">
-                <span class="text-brandGreen text-[10px] uppercase tracking-[0.3em] font-black">Entrust Us with your Property</span>
+    <section class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50 -z-10 skew-x-12 translate-x-20"></div>
+        
+        <div class="container mx-auto grid lg:grid-cols-2 gap-12 items-center relative">
+            <div class="text-left">
+                <div class="inline-flex items-center gap-2 bg-brandGreen/10 px-4 py-2 rounded-full mb-6">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandGreen opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-brandGreen"></span>
+                    </span>
+                    <span class="text-brandGreen text-[10px] uppercase tracking-[0.2em] font-bold">Available across Nigeria</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-8 tracking-tighter">
+                    A Reliable Name In <br> 
+                    <span id="typewriter" class="text-brandBlue"></span><span class="cursor">|</span>
+                </h1>
+                
+                <p class="text-slate-500 text-lg md:text-xl leading-relaxed mb-10 max-w-xl">
+                    Premium home improvement and property management built on quality finishing, safety, and transparent communication.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="contact.html" class="bg-brandBlue text-white px-8 py-4 rounded-xl font-bold hover:scale-105 transition-all shadow-xl shadow-brandBlue/20">Start Your Project</a>
+                    <div class="flex items-center gap-4 px-4">
+                        <div class="flex -space-x-3">
+                            <img src="https://i.pravatar.cc/100?u=1" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
+                            <img src="https://i.pravatar.cc/100?u=2" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
+                            <img src="https://i.pravatar.cc/100?u=3" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
+                        </div>
+                        <div class="text-sm">
+                            <p class="font-bold text-slate-900">500+ Projects</p>
+                            <p class="text-slate-500 text-xs">Completed Successfully</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h1 class="text-5xl md:text-8xl font-extrabold text-gradient leading-[1.1] mb-8 tracking-tighter min-h-[1.2em]">
-                A Reliable Name In <br class="hidden md:block"> 
-                <span id="typewriter" class="text-brandBlue"></span><span class="cursor">|</span>
-            </h1>
-            <p class="max-w-2xl mx-auto text-slate-500 text-lg md:text-xl leading-relaxed mb-12">
-                Home improvement and property management built on quality finishing, safety, and clear communication.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-5">
-                <a href="contact.html" class="bg-brandBlue text-white px-10 py-5 rounded-2xl font-bold text-sm hover:scale-105 transition-all shadow-xl shadow-brandBlue/20 text-center">Get a Quote</a>
-                <a href="services.html" class="glass text-slate-800 px-10 py-5 rounded-2xl font-bold text-sm hover:bg-black/5 transition-all text-center">Explore Services</a>
+
+            <div class="relative hidden lg:block animate-float">
+                <div class="relative z-10 rounded-[40px] overflow-hidden border-8 border-white shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" alt="Modern Interior" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute -bottom-10 -left-10 glass p-6 rounded-3xl z-20">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-brandOrange/20 p-3 rounded-2xl text-brandOrange">
+                            <i class="fa-solid fa-shield-check text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold">Fully Insured</p>
+                            <p class="text-xs text-slate-500">Guaranteed Protection</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-32 px-6">
-        <div class="container mx-auto max-w-6xl">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="relative group">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-brandGreen via-brandBlue to-brandOrange rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-                    <div class="relative aspect-square glass rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="image.png" alt="Damscorp Project" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
+    <section class="py-12 border-y border-slate-100 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-black text-brandBlue mb-1">12+</div>
+                    <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Years Experience</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-black text-brandGreen mb-1">150+</div>
+                    <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Managed Assets</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-black text-brandOrange mb-1">98%</div>
+                    <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Client Satisfaction</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-black text-slate-900 mb-1">24/7</div>
+                    <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Support Ready</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-32 px-6 bg-slate-50">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div class="max-w-xl">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tighter mb-4">Tailored Property Solutions</h2>
+                    <p class="text-slate-500 leading-relaxed">From modern POP ceilings to complete estate management, we handle the details so you don't have to.</p>
+                </div>
+                <a href="services.html" class="text-brandBlue font-bold border-b-2 border-brandBlue/20 pb-1 hover:border-brandBlue transition-all">View All Services</a>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group bg-white p-8 rounded-[32px] hover:shadow-2xl transition-all duration-500 border border-slate-100">
+                    <div class="w-16 h-16 bg-brandGreen/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brandGreen group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-paint-roller text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Renovation</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">High-end POP ceiling designs, professional painting, and floor remodeling for luxury spaces.</p>
+                    <ul class="space-y-3 mb-8 text-sm text-slate-600">
+                        <li><i class="fa-solid fa-check text-brandGreen mr-2"></i> POP & False Ceilings</li>
+                        <li><i class="fa-solid fa-check text-brandGreen mr-2"></i> Wall Screeding/Painting</li>
+                    </ul>
+                </div>
+
+                <div class="group bg-white p-8 rounded-[32px] hover:shadow-2xl transition-all duration-500 border border-slate-100">
+                    <div class="w-16 h-16 bg-brandBlue/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brandBlue group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Maintenance</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">End-to-end property care including plumbing, electrical work, and regular facility inspections.</p>
+                    <ul class="space-y-3 mb-8 text-sm text-slate-600">
+                        <li><i class="fa-solid fa-check text-brandBlue mr-2"></i> Plumbing & Electrical</li>
+                        <li><i class="fa-solid fa-check text-brandBlue mr-2"></i> Facility Management</li>
+                    </ul>
+                </div>
+
+                <div class="group bg-white p-8 rounded-[32px] hover:shadow-2xl transition-all duration-500 border border-slate-100">
+                    <div class="w-16 h-16 bg-brandOrange/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brandOrange group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-broom text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Cleaning</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">Meticulous post-construction cleaning and corporate janitorial services with industrial-grade equipment.</p>
+                    <ul class="space-y-3 mb-8 text-sm text-slate-600">
+                        <li><i class="fa-solid fa-check text-brandOrange mr-2"></i> Post-Construction</li>
+                        <li><i class="fa-solid fa-check text-brandOrange mr-2"></i> Industrial Cleaning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-32 px-6 bg-white overflow-hidden">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-brandOrange text-[10px] uppercase tracking-[0.2em] font-bold">Client Feedback</span>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tighter mt-4">What Our Clients Say</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-[32px] bg-slate-50 border border-slate-100">
+                    <div class="text-brandGreen mb-6 flex gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-8 leading-relaxed">"Damscorp transformed my apartment with their POP ceiling work. The attention to detail was exceptional, and they finished ahead of schedule."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/100?u=8" class="w-12 h-12 rounded-full border-2 border-white shadow-md" alt="Client">
+                        <div>
+                            <h4 class="font-bold text-sm">Mr. Adebayo</h4>
+                            <p class="text-[10px] text-slate-400 uppercase tracking-widest">Homeowner, Lekki</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8 rounded-[32px] bg-brandBlue text-white relative lg:-translate-y-4 shadow-2xl shadow-brandBlue/30">
+                    <div class="text-brandOrange mb-6 flex gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-200 italic mb-8 leading-relaxed">"Their property management service is top-notch. I reside abroad and I can rest easy knowing my assets in Nigeria are in professional hands."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/100?u=9" class="w-12 h-12 rounded-full border-2 border-white/20 shadow-md" alt="Client">
+                        <div>
+                            <h4 class="font-bold text-sm">Chidi Opara</h4>
+                            <p class="text-[10px] text-slate-300 uppercase tracking-widest">Real Estate Investor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8 rounded-[32px] bg-slate-50 border border-slate-100">
+                    <div class="text-brandGreen mb-6 flex gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 italic mb-8 leading-relaxed">"Used their industrial cleaning service for our new office complex. Spotless results and very professional staff. Highly recommended."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/100?u=12" class="w-12 h-12 rounded-full border-2 border-white shadow-md" alt="Client">
+                        <div>
+                            <h4 class="font-bold text-sm">Sarah Jenkins</h4>
+                            <p class="text-[10px] text-slate-400 uppercase tracking-widest">Operations Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brandBlue text-white pt-20 pb-10 px-6">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-2">
+                    <img src="logo.png" alt="Damscorp" class="h-12 w-auto mb-6 brightness-0 invert">
+                    <p class="text-slate-400 max-w-sm mb-8">Nigeria's most dependable property experts. We transform houses into homes and investments into assets.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-brandGreen transition-all"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-brandGreen transition-all"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-brandGreen transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div>
-                    <h2 class="text-4xl font-bold text-slate-900 mb-8 tracking-tight">Nigeria's Dependable Property Experts</h2>
-                    <p class="text-slate-600 text-lg leading-relaxed mb-6">
-                        Damscorp is a home improvement and property management company in Nigeria. We help homeowners, landlords, and businesses improve their spaces through professional renovation and remodelling.
-                    </p>
-                    <a href="about.html" class="text-brandOrange text-xs font-bold uppercase tracking-widest hover:text-brandBlue transition-colors">Read our story →</a>
+                    <h4 class="font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Our Services</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Get a Quote</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6">Contact</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><i class="fa-solid fa-phone mr-2 text-brandGreen"></i> +234 903 526 3540</li>
+                        <li><i class="fa-solid fa-envelope mr-2 text-brandGreen"></i> contact@damscorp.com</li>
+                        <li><i class="fa-solid fa-location-dot mr-2 text-brandGreen"></i> Lagos, Nigeria</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="services" class="py-32 px-6 bg-slate-50/50">
-        <div class="container mx-auto">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tighter">Our Expertise</h2>
-                <div class="w-16 h-1 bg-brandBlue mx-auto"></div>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div class="glass p-10 rounded-[32px] group hover:bg-white transition-all duration-500">
-                    <div class="w-14 h-14 bg-brandGreen/10 rounded-2xl flex items-center justify-center mb-8">
-                        <svg class="w-7 h-7 text-brandGreen" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-4">Renovation</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed mb-6">Expert remodeling, painting, and high-end POP ceiling designs for modern homes.</p>
-                    <a href="services.html" class="text-brandBlue text-[10px] font-bold uppercase tracking-widest">Learn More</a>
-                </div>
-
-                <div class="glass p-10 rounded-[32px] border-brandBlue/10 bg-brandBlue/[0.02]">
-                    <div class="w-14 h-14 bg-brandBlue/10 rounded-2xl flex items-center justify-center mb-8">
-                        <svg class="w-7 h-7 text-brandBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-4">Maintenance</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed mb-6">Dependable plumbing, electrical services, and proactive property management.</p>
-                    <a href="services.html" class="text-brandBlue text-[10px] font-bold uppercase tracking-widest">Learn More</a>
-                </div>
-
-                <div class="glass p-10 rounded-[32px] group hover:bg-white transition-all duration-500">
-    <div class="w-14 h-14 bg-brandOrange/10 rounded-2xl flex items-center justify-center mb-8">
-        <svg class="w-7 h-7 text-brandOrange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z M9 21v-4a3 3 0 016 0v4"></path>
-        </svg>
-    </div>
-    <h3 class="text-xl font-bold text-slate-900 mb-4">Cleaning</h3>
-    <p class="text-slate-500 text-sm leading-relaxed mb-6">Specialized industrial, commercial, and meticulous post-construction cleaning.</p>
-    <a href="services.html" class="text-brandBlue text-[10px] font-bold uppercase tracking-widest">Learn More</a>
-</div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact" class="py-20 border-t border-black/5 bg-slate-50/30">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold text-slate-900 mb-4 tracking-tighter">Ready to start?</h2>
-            <p class="text-slate-500 mb-10 text-sm">Connect with Damscorp for a professional inspection.</p>
-            
-            <div class="flex flex-col gap-4">
-                <a href="mailto:contact@damscorp.com" class="text-2xl md:text-4xl font-extrabold text-slate-900 hover:text-brandBlue transition-colors underline underline-offset-8 decoration-1">
-                    contact@damscorp.com
-                </a>
-                <a href="tel:+2349035263540" class="text-xl md:text-2xl font-bold text-brandBlue hover:text-brandGreen transition-colors">
-                    +234 903 526 3540
-                </a>
-            </div>
-            
-            <div class="mt-24 pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                <span class="text-[10px] uppercase tracking-[0.4em] font-black text-slate-400">© 2026 Damscorp Nigeria</span>
-                
-                <div class="flex gap-8 text-xl text-slate-400">
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="hover:text-brandBlue transition-all transform hover:-translate-y-1"><i class="fa-brands fa-facebook"></i></a>
-                </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-slate-500 font-bold">
+                <p>© 2026 Damscorp Nigeria. All rights reserved.</p>
+                <p>Designed for Excellence</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Typewriter Animation Logic
+        // Typewriter Logic
         const typewriterElement = document.getElementById('typewriter');
-        const phrases = [
-            "Modern Renovation",
-            "Home Improvement",
-            "Property Management",
-            "Quality Finishing"
-        ];
-
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typeSpeed = 100;
+        const phrases = ["Modern Renovation", "Home Improvement", "Property Management", "Quality Finishing"];
+        let phraseIndex = 0, charIndex = 0, isDeleting = false, typeSpeed = 100;
 
         function type() {
             const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-                typeSpeed = 50;
-            } else {
-                typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-                typeSpeed = 100;
-            }
+            typewriterElement.textContent = isDeleting 
+                ? currentPhrase.substring(0, charIndex--) 
+                : currentPhrase.substring(0, charIndex++);
 
-            if (!isDeleting && charIndex === currentPhrase.length) {
+            if (!isDeleting && charIndex > currentPhrase.length) {
                 isDeleting = true;
-                typeSpeed = 2500; 
+                typeSpeed = 2000;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
                 typeSpeed = 500;
+            } else {
+                typeSpeed = isDeleting ? 50 : 100;
             }
-
             setTimeout(type, typeSpeed);
+        }
+
+        // Mobile Menu Logic
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('translate-x-full');
         }
 
         document.addEventListener('DOMContentLoaded', type);
