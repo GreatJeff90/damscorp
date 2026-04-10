@@ -21,11 +21,18 @@
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
+                        'blob': 'blob 7s infinite',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-20px)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
                         }
                     }
                 }
@@ -56,7 +63,7 @@
         <a href="contact.html" class="bg-brandOrange px-8 py-3 rounded-xl font-bold">Get a Quote</a>
     </div>
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-6xl">
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-6xl ">
         <div class="glass rounded-2xl px-6 py-3 flex justify-between items-center">
             <a href="index.html" class="flex items-center">
                 <img src="logo.png" alt="Damscorp Logo" class="h-10 md:h-20 w-auto object-contain">
@@ -77,11 +84,13 @@
         </div>
     </nav>
 
-    <section class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
+    <section class="relative min-h-screen flex items-center justify-center pt-20 mt-20 px-6 overflow-hidden">
         <div class="absolute top-0 right-0 w-1/2 h-full bg-slate-50 -z-10 skew-x-12 translate-x-20"></div>
+        <div class="absolute top-1/4 right-10 w-72 h-72 bg-brandGreen/10 rounded-full blur-3xl animate-blob"></div>
+        <div class="absolute bottom-1/4 right-40 w-72 h-72 bg-brandBlue/10 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
         
         <div class="container mx-auto grid lg:grid-cols-2 gap-12 items-center relative">
-            <div class="text-left">
+            <div class="text-left z-10">
                 <div class="inline-flex items-center gap-2 bg-brandGreen/10 px-4 py-2 rounded-full mb-6">
                     <span class="relative flex h-2 w-2">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandGreen opacity-75"></span>
@@ -101,7 +110,7 @@
                 
                 <div class="flex flex-wrap gap-4">
                     <a href="contact.html" class="bg-brandBlue text-white px-8 py-4 rounded-xl font-bold hover:scale-105 transition-all shadow-xl shadow-brandBlue/20">Start Your Project</a>
-                    <div class="flex items-center gap-4 px-4">
+                    <div class="flex items-center gap-4 px-4 border-l border-slate-200 ml-2">
                         <div class="flex -space-x-3">
                             <img src="https://i.pravatar.cc/100?u=1" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
                             <img src="https://i.pravatar.cc/100?u=2" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
@@ -115,18 +124,26 @@
                 </div>
             </div>
 
-            <div class="relative hidden lg:block animate-float">
-                <div class="relative z-10 rounded-[40px] overflow-hidden border-8 border-white shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" alt="Modern Interior" class="w-full h-full object-cover">
-                </div>
-                <div class="absolute -bottom-10 -left-10 glass p-6 rounded-3xl z-20">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-brandOrange/20 p-3 rounded-2xl text-brandOrange">
-                            <i class="fa-solid fa-shield-check text-2xl"></i>
+            <div class="relative group">
+                <div class="relative z-10 animate-float flex justify-center lg:justify-end">
+                    <img src="image.png" alt="Damscorp Expert" class="w-full max-w-[500px] h-auto object-contain drop-shadow-2xl">
+                    
+                    <div class="absolute -bottom-6 left-0 lg:left-10 glass p-5 rounded-3xl z-20 animate-float shadow-2xl">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-brandOrange/20 p-3 rounded-2xl text-brandOrange">
+                                <i class="fa-solid fa-shield-check text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-800">100% Guaranteed</p>
+                                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Safe & Reliable</p>
+                            </div>
                         </div>
-                        <div>
-                            <p class="font-bold">Fully Insured</p>
-                            <p class="text-xs text-slate-500">Guaranteed Protection</p>
+                    </div>
+
+                    <div class="absolute top-20 right-0 hidden md:block glass py-3 px-5 rounded-2xl z-20 border-l-4 border-brandGreen shadow-xl">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-brandGreen"></i>
+                            <span class="text-sm font-bold text-slate-700">Expert Supervision</span>
                         </div>
                     </div>
                 </div>
@@ -218,7 +235,7 @@
                     <div class="text-brandGreen mb-6 flex gap-1">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-slate-600 italic mb-8 leading-relaxed">"Damscorp transformed my apartment with their POP ceiling work. The attention to detail was exceptional, and they finished ahead of schedule."</p>
+                    <p class="text-slate-600 italic mb-8 leading-relaxed">"Damscorp transformed my apartment with their POP ceiling work. The attention to detail was exceptional."</p>
                     <div class="flex items-center gap-4">
                         <img src="https://i.pravatar.cc/100?u=8" class="w-12 h-12 rounded-full border-2 border-white shadow-md" alt="Client">
                         <div>
@@ -231,7 +248,7 @@
                     <div class="text-brandOrange mb-6 flex gap-1">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-slate-200 italic mb-8 leading-relaxed">"Their property management service is top-notch. I reside abroad and I can rest easy knowing my assets in Nigeria are in professional hands."</p>
+                    <p class="text-slate-200 italic mb-8 leading-relaxed">"Their property management service is top-notch. I reside abroad and I can rest easy knowing my assets are in safe hands."</p>
                     <div class="flex items-center gap-4">
                         <img src="https://i.pravatar.cc/100?u=9" class="w-12 h-12 rounded-full border-2 border-white/20 shadow-md" alt="Client">
                         <div>
@@ -244,7 +261,7 @@
                     <div class="text-brandGreen mb-6 flex gap-1">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="text-slate-600 italic mb-8 leading-relaxed">"Used their industrial cleaning service for our new office complex. Spotless results and very professional staff. Highly recommended."</p>
+                    <p class="text-slate-600 italic mb-8 leading-relaxed">"Spotless results for our office complex cleaning. Highly professional and efficient staff."</p>
                     <div class="flex items-center gap-4">
                         <img src="https://i.pravatar.cc/100?u=12" class="w-12 h-12 rounded-full border-2 border-white shadow-md" alt="Client">
                         <div>
@@ -272,10 +289,9 @@
                 <div>
                     <h4 class="font-bold mb-6">Quick Links</h4>
                     <ul class="space-y-4 text-slate-400 text-sm">
-                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="#services" class="hover:text-white transition-colors">Our Services</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Our Services</a></li>
                         <li><a href="contact.html" class="hover:text-white transition-colors">Get a Quote</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div>
